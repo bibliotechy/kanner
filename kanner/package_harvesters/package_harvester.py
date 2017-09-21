@@ -6,10 +6,9 @@ class PackageHarvester(object):
 
     DAY_IN_SECONDS = 86400
 
-    def __init__(self, package_metadata, dest_path, force_harvest=false):
+    def __init__(self, package_metadata, dest_path, force_harvest=False):
         self.metadata = JSON.loads(package_metadata)
-        self.id = self.metadata['id']
-        self.name = self.metadata['title']
+
         self.metadata_path = path.join(dest_path, safe_package_name())
         self.update_frequency = guess_update_frequency()
         self.force_harvest = force_harvest
@@ -67,7 +66,7 @@ class PackageHarvester(object):
         return value
 
     def package_metadata_file_path(self):
-        path.join(self.metadata_path, safe_package_name + "ckan-metadata.json")
+        path.join(self.package_path, safe_package_name + "ckan-metadata.json")
 
     def is_within_frequency_limit(self, filepath):
             now = time.time()
